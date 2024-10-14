@@ -1,0 +1,50 @@
+
+version: 2
+
+sources:
+ - name: sales_car
+   description: This is a example of a company
+   tables:
+     - name: company_branches
+       description: This table contains informations about company bramches
+     - name: order_items
+       description: This table contains informations about order items 
+     - name: order_types
+       description: This table contains informations about order types
+     - name: orders
+       description: This table contains informations about orders
+       columns:
+        - name: id
+          description: Primary key of the orders table
+          tests:
+            - unique
+            - not_null
+        - name: customer_id
+          description: Foreign key of the customers table
+          tests:
+            - not_null
+        - name: departament_id
+          description:  Foreign key of the column departament in employees table
+          
+        - name: order_type_id
+          description: Foreing Key of the order type table
+          tests:
+           - not_null
+        - name: order_status
+          description: Description of e order status type table
+          tests:
+            - not_null 
+            - accepted_values:
+                values: ['delayed','on hold', 'pending', 'shipped']  
+        - name: order_date
+          description: Column date of orderes table 
+          tests:
+           - not_null 
+        - name: return_date
+          description: Column date of orderes table 
+          tests:
+           - not_null            
+ - name: seeds  
+   tables:
+     - name: customers
+     - name: employees
