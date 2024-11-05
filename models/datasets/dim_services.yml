@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: dim_services
+    description: Dimension about services data
+    tests:
+      - dbt_utils.fewer_rows_than:
+          compare_model: ref('order_items')
+      - dbt_utils.unique_combination_of_columns:
+           combination_of_columns:
+           - service    
+    columns:
+      - name: sk_services
+        description: primary key of services table
+        tests:
+          - unique
+          - not_null
+      - name: service
+        description: description about de departament in services table
+        tests:
+          - not_null
+     

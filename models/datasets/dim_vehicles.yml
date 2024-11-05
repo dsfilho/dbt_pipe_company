@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: dim_vehicles
+    description: Dimension about vehicles data
+    tests:
+      - dbt_utils.fewer_rows_than:
+          compare_model: ref('order_items')
+      - dbt_utils.unique_combination_of_columns:
+           combination_of_columns:
+           - manufacturer
+           - model   
+    columns:
+      - name: sk_vehicles
+        description: primary key of vehicles table
+        tests:
+          - unique
+          - not_null
+      - name: manufacturer
+        description: description about de year of manufacturer in vehicles table
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: String
+      - name: model
+        description: description about de model in vehicles table
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: String    
+     

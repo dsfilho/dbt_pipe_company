@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: dim_products
+    description: Dimension about products data
+    tests:
+      - dbt_utils.fewer_rows_than:
+          compare_model: ref('order_items')
+      - dbt_utils.unique_combination_of_columns:
+           combination_of_columns:
+           - product    
+    columns:
+      - name: sk_products
+        description: primary key of products table
+        tests:
+          - unique
+          - not_null
+      - name: product
+        description: description about de departament in products table
+        tests:
+          - not_null
+     

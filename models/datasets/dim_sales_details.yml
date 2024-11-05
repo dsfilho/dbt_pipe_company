@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: dim_sales_details
+    description: Dimension about sales details data
+    tests:
+      - dbt_utils.fewer_rows_than:
+          compare_model: ref('order_items')
+      - dbt_utils.unique_combination_of_columns:
+           combination_of_columns:
+           - year_manufacturer
+           - color
+           - status    
+    columns:
+      - name: sk_sales_details
+        description: primary key of sales details table
+        tests:
+          - unique
+          - not_null
+      - name: year_manufacturer
+        description: description about de year of manufacturer in sales details table
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: Int64
+      - name: color
+        description: description about de colors in sales details table
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: String    
+      - name: status
+        description: description about de status in sales details table
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: String                
+     

@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: dim_order_types
+    description: Dimension about order_types data
+    tests:
+      - dbt_utils.equal_rowcount:
+          compare_model: ref('order_types')
+      - dbt_utils.unique_combination_of_columns:
+           combination_of_columns:
+           - order_types_id
+           - type     
+    columns:
+      - name: order_types_id
+        description: primary key of order_types table
+        tests:
+          - unique
+          - not_null
+      - name: type
+        description: description about de departament in order_types table
+        tests:
+          - not_null
+     

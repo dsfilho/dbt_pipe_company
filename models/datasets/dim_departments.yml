@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: dim_departments
+    description: Dimension about departaments data
+    tests:
+      - dbt_utils.fewer_rows_than:
+          compare_model: ref('stg_employees')
+      - dbt_utils.unique_combination_of_columns:
+           combination_of_columns:
+           - departament_id
+           - departament       
+    columns:
+      - name: departament_id
+        description: primary key of departaments table
+        tests:
+          - unique
+          - not_null
+      - name: departament
+        description: description about de departament in departaments table
+        tests:
+          - not_null
+     

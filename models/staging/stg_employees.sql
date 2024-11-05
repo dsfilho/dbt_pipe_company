@@ -1,3 +1,4 @@
+{{ config(alias='employees')}}
 with
     source as (
         SELECT 

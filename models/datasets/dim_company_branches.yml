@@ -1,0 +1,53 @@
+version: 2
+
+models:
+  - name: dim_company_branches
+    description: Dimension about company Branches data
+    tests:
+      - dbt_utils.equal_rowcount:
+          compare_model: ref('company_branches')
+      - dbt_utils.unique_combination_of_columns:
+           combination_of_columns:
+            - company_branches_id
+            - country_code
+            - country
+            - state
+            - city
+            - name
+            - latitude
+            - longitude
+            - phone
+    columns:
+      - name: company_branches_id
+        description: primary key of company branches
+        tests:
+          - unique
+          - not_null
+      - name: country_code
+        description: description about country code in company branches
+        tests:
+          - not_null
+      - name: country
+        description: description about country  in company branches
+        tests:
+          - not_null
+      - name: city
+        description: description about city  in company branches
+        tests:
+          - not_null           
+      - name: name
+        description: description about name  in company branches
+        tests:
+          - not_null
+      - name: latitude
+        description: description about latitude  in company branches
+        tests:
+          - not_null 
+      - name: longitude
+        description: description about longitude  in company branches
+        tests:
+          - not_null 
+      - name: phone
+        description: description about phone  in company branches
+        tests:
+          - not_null                           

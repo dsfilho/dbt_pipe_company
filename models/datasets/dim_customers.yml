@@ -1,0 +1,86 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: Dimension about customers data
+    tests:
+      - dbt_utils.equal_rowcount:
+          compare_model: ref('stg_customers')
+      - dbt_utils.unique_combination_of_columns:
+           combination_of_columns:
+           - customer_id
+           - first_name
+           - last_name
+           - gender 
+           - job_title
+           - phone
+           - email
+           - is_recurring
+           - level
+           - registration_date
+           - country_code
+           - country
+           - city
+           - latitude
+           - longitude
+    columns:
+      - name: customer_id
+        description: primary key of customers table
+        tests:
+          - unique
+          - not_null
+      - name: first_name
+        description: description about country code in customers table
+        tests:
+          - not_null
+      - name: last_name
+        description: description about country  in customers table
+        tests:
+          - not_null
+      - name: gender
+        description: description about city  in customers table
+        tests:
+          - not_null           
+      - name: job_title
+        description: description about name  in customers table
+        tests:
+          - not_null
+      - name: phone
+        description: description about phone  in customers table
+        tests:
+          - not_null 
+      - name: email
+        description: description about email  in customers table
+        tests:
+          - not_null
+      - name: is_recurring
+        description: description about is_recurring  in customers table
+        tests:
+          - not_null 
+      - name: level
+        description: description about level  in customers table
+        tests:
+          - not_null         
+      - name: registration_date
+        description: description about registration_date  in customers table
+                 
+      - name: country_code
+        description: description about country_code  in customers table
+        tests:
+          - not_null
+      - name: country
+        description: description about country  in customers table
+        tests:
+          - not_null 
+      - name: city
+        description: description about city  in customers table
+        tests:
+          - not_null
+      - name: latitude
+        description: description about latitude  in customers table
+        tests:
+          - not_null   
+      - name: longitude
+        description: description about longitude  in customers table
+             
+
